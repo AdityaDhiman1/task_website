@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin Dashboard</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/style.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/font_awesome/css/all.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" type="text/css" media="all">
+</head>
+<body>
+<div class="main-div">
+    <header>
+        <nav>
+          <div class="logo-div">
+            <img src="https://cdn.pixabay.com/photo/2016/03/31/19/50/checklist-1295319_640.png" alt="">
+          </div>
+          <div class="info-div">
+             <div class="routine-div">
+                <a href="/routine"><i class="fa-solid fa-square-plus"></i> Add Routine</a>
+             </div>
+          </div>
+        </nav>
+    </header>
+    <section>
+        <div class="table-div">
+            <table class="adminTable">
+                <thead>
+                    <tr>
+                        <td>No.</td>
+                        <td>Title</td>
+                        <td>Task-Details.</td>
+                        <td>Task-Time</td>
+                        <td>Task-Status</td>
+                        <td>Buttons</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each result}}
+                    <tr>
+                        <td>{{__v}}</td>
+                        <td>{{Title}}</td>
+                        <td>{{Description}}</td>
+                        <td>{{Time}}</td>
+                        <td>
+                            <form action="/statusPost" method="post" class="tableForm">
+                                <input type="hidden"   value="{{_id}}" name="id">
+                                <input type="hidden"  value="{{Task_Status}}" name="taskStatus">
+                                <input type="submit"   class="btn btn-primary w-50 " value="{{Task_Status}}" class="submit-button">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="/deletePost" method="post" class="tableForm">
+                                <input type="hidden" value="{{_id}}" name="id">
+                                <input type="submit" value="Delete" class=" btn btn-danger w-50">
+                            </form>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </section>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js" integrity="sha512-X/YkDZyjTf4wyc2Vy16YGCPHwAY8rZJY+POgokZjQB2mhIRFJCckEGc6YyX9eNsPfn0PzThEuNs+uaomE5CO6A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/JQuery/jquery-3.6.1.min.js"></script>
+    <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script>
+         $(document).ready(function () {
+            $('.adminTable').DataTable({
+                responsive: true,
+            });
+     });
+    </script>
+</div>
+
+</body>
+</html>

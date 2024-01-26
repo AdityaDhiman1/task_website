@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Routine</title>
+        <link rel="stylesheet" href="/css/style.css" media="all" type="text/css">
+</head>
+<body>
+    <div class="main-div">
+        {{#if taskError}}
+            <div class="error-div">
+                <span class="error">Please enter the task description. You can't leave this empty.</span>
+            </div>
+        {{/if}}
+        {{#if titleError}}
+            <div class="error-div">
+                <span class="error">Please enter the title of task. You can't leave this empty.</span>
+            </div>
+        {{/if}}
+        <form action="/routinePost" method="post" class="task-form">
+            <div class="heading-div">
+                <h1>Welcome User!</h1>
+                <p>Adding your task details here.</p>
+            </div>
+            <div class="name-div">
+                <label for="title">Task-Title:</label>
+                <input type="text" placeholder="Enter the Title of your task." name="title">
+            </div>
+            <div class="email-div">
+                <label for="task">Task:</label>
+                <textarea name="task"  cols="30" rows="5"></textarea>
+            </div>
+            <div class="email-div">
+                <label for="time">Time:</label>
+                <input type="time" name="time">
+            </div>
+            <div class="submit-div">
+                <input type="submit" value="Add" class="submit">
+                <p>For Home. Please <a href="/">Click Here</a></p>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
